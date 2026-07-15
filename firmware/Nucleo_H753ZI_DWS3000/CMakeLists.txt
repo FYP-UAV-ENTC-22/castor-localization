@@ -19,7 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Set the project name
-set(CMAKE_PROJECT_NAME Nucleo_F446RE_DWS3000)
+set(CMAKE_PROJECT_NAME Nucleo_H753ZI_DWS3000)
 
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
@@ -66,9 +66,9 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${EXAMPLES_PATH}/examples/examples_info/example_info.c
     ${EXAMPLES_PATH}/examples/shared_data/shared_functions.c
 
-    # DW3000 example(s) selected via config/example_selection.h (this board = SS-TWR initiator)
+    # DW3000 example(s) selected via config/example_selection.h (this board = SS-TWR responder)
     ${EXAMPLES_PATH}/examples/ex_00a_reading_dev_id/read_dev_id.c
-    ${EXAMPLES_PATH}/examples/ex_06a_ss_twr_initiator/ss_twr_initiator.c
+    ${EXAMPLES_PATH}/examples/ex_06b_ss_twr_responder/ss_twr_responder.c
 )
 
 # Add include paths
@@ -95,6 +95,6 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     uwb_driver
 )
 
-# nano.specs strips float support from printf/snprintf by default; ss_twr_initiator.c
-# formats the ranging result with %f, so pull the float-capable formatter back in.
+# nano.specs strips float support from printf/snprintf by default; needed if this board
+# ever runs an example (e.g. an initiator role) that formats results with %f.
 target_link_options(${CMAKE_PROJECT_NAME} PRIVATE -u _printf_float)
