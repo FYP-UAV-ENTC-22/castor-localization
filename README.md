@@ -1,4 +1,4 @@
-# localization-core
+# castor-localization
 
 UWB indoor localization firmware, built on the vendored Qorvo/Decawave `DW3_QM33_SDK_1.1.1` driver
 layer, targeting STM32 Nucleo boards paired with DWS3000 UWB shields.
